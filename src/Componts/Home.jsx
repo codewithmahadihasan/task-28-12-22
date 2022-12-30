@@ -1,25 +1,10 @@
 import React from 'react';
-import { useQuery } from "@tanstack/react-query";
+import UseFetch from '../Hook/UseFetch';
+
 
 const Home = () => {
 
-   
-
-    const { data: datas, isLoading } = useQuery({
-        queryKey: ["random"],
-        queryFn: async () => {
-          const res = await fetch("https://www.boredapi.com/api/activity");
-          const data = await res.json();
-          return data;
-        },
-      });
-      console.log(datas);
-
-      if(isLoading){
-        return <h1 className='flex justify-center text-5xl font-semibold mt-48'>
-            Loading..
-        </h1>
-      }
+ const [datas] = UseFetch("https://www.boredapi.com/api/activity");
     
     return (
         <div className='flex justify-center pt-48'>
